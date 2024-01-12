@@ -5,14 +5,14 @@ import SearchBar from "./components/SearchBar";
 import Welcome from "./components/Welcome";
 import SingleCard from "./components/SingleCard";
 
-function App() {
+function App(props) {
 	return (
 		<div className="App">
 			<BrowserRouter>
 				<SearchBar />
 				<Routes>
 					<Route path="/" element={<Welcome />} />
-					<Route path="/details/:city" element={<SingleCard />} />
+					<Route path="/details/:city" element={!props && <SingleCard />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
