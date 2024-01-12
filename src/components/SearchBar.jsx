@@ -57,7 +57,7 @@ const SearchBar = () => {
 						</Form.Group>
 					</Form>
 					<Button onClick={handleSearch} className="mt-3 me-2">
-						Cerca città
+						Cerca
 					</Button>
 					{homeButton && (
 						<Button onClick={handleHomeClick} className="mt-3 ms-2">
