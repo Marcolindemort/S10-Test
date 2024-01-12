@@ -22,10 +22,10 @@ const SearchBar = () => {
 				setHomeButton(true);
 				navigate(`/details/${searchQuery}`);
 			} else {
-				console.log("Errore nella risposta della fetch:", response.statusText);
+				console.log("Errore nella risposta della fetch");
 			}
 		} catch (error) {
-			console.log("Errore durante la fetch:", error);
+			console.log("Errore durante la fetch");
 		}
 	};
 
