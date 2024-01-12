@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import SingleCard from "./SingleCard";
 import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [meteo, setMeteo] = useState([]);
-	const [showHomeButton, setShowHomeButton] = useState(false);
+	const [homeButton, setHomeButton] = useState(false);
 	const navigate = useNavigate();
 
 	const handleSearch = async () => {
@@ -19,7 +19,7 @@ const SearchBar = () => {
 				let weather = await response.json();
 				console.log("meteo", weather);
 				setMeteo(weather);
-				setShowHomeButton(true);
+				setHomeButton(true);
 				navigate(`/details/${searchQuery}`);
 			} else {
 				console.log("Errore nella risposta della fetch:", response.statusText);
@@ -38,7 +38,7 @@ const SearchBar = () => {
 		navigate(`/`);
 		setSearchQuery([]);
 		setMeteo([]);
-		setShowHomeButton(false);
+		setHomeButton(false);
 	};
 
 	return (
@@ -56,15 +56,18 @@ const SearchBar = () => {
 							/>
 						</Form.Group>
 					</Form>
+					<Button onClick={handleSearch} className="mt-3 me-2">
+						Cerca città
+					</Button>
+					{homeButton && (
+						<Button onClick={handleHomeClick} className="mt-3 ms-2">
+							Home
+						</Button>
+					)}
 				</Col>
-				{showHomeButton && (
-					<Col xs={2}>
-						<button onClick={handleHomeClick}>Home</button>
-					</Col>
-				)}
 			</Row>
-			<Row>
-				<Col xs={12}>
+			<Row className="d-flex justify-content-center">
+				<Col xs={8}>
 					{meteo.name && (
 						<SingleCard
 							nome={meteo.name}
@@ -76,11 +79,6 @@ const SearchBar = () => {
 							condizioniMeteo={meteo.weather[0].main}
 						/>
 					)}
-				</Col>
-			</Row>
-			<Row>
-				<Col xs={12}>
-					<button onClick={handleSearch}>Cerca</button>
 				</Col>
 			</Row>
 		</Container>

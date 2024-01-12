@@ -12,7 +12,7 @@ function App() {
 				<SearchBar />
 				<Routes>
 					<Route path="/" element={<Welcome />} />
-					<Route path="/details/searchQuery" element={<SingleCard />} />
+					<Route path="/details/:city" element={<SingleCard />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
