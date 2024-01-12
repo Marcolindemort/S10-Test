@@ -77,6 +77,7 @@ const SearchBar = () => {
 							tempMin={meteo.main.temp_min}
 							stato={meteo.sys.country}
 							condizioniMeteo={meteo.weather[0].main}
+							icon={meteo.weather[0].icon}
 						/>
 					)}
 				</Col>
